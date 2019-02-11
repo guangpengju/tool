@@ -11,11 +11,11 @@ public class SQLToolApplication {
    
     
     public static void main(String[] args) {
-        log.info("启动......");
+        log.info("starting......");
         String directorypath = SQLTemplate.getDirectoryPath();
         String path = SQLTemplate.getSQLTemplatePath();
         List<Table> tables = FileHandler.readExcel(path);
         FileHandler.writeSQL(directorypath, tables);
-        log.info("sql生成完毕!!!");
+        log.info("sql create success!!!");
     }
 }

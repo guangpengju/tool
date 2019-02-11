@@ -166,7 +166,7 @@ public class FileHandler {
         List<TableCol> cols = table.getCols();
         
         if(cols != null && !cols.isEmpty()){
-            sql.append("DROP TABLE ").append(table.getTableName()).append("; \n");
+            sql.append("DROP TABLE IF EXISTS ").append(table.getTableName()).append("; \n");
             sql.append("CREATE TABLE `").append(table.getTableName()).append("` (\n");
             StringBuffer pk = new StringBuffer("PRIMARY KEY (");
             boolean havePK = false;

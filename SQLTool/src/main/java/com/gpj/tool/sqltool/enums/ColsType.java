@@ -10,8 +10,8 @@ public enum ColsType {
     I("I","int","整数型",10,-1,"","NULL"),
     DC("DC","varchar","字典型",2,-1,"utf8","NULL"),
     MONEY("MONEY","decimal","货币型",10,2,"","NULL"),
-    T("DT","time","时间型",-1,-1,"","NULL"),
-    DT("DT","timestamp","日期时间型",-1,-1,"","NULL");
+    T("T","time","时间型",-1,-1,"","NULL"),
+    DT("DT","timestamp","日期时间型",-1,-1,"","'1990-01-01 00:00:00'");
     
     private final String showName;
     private final String code;
