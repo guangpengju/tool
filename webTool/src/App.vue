@@ -6,13 +6,25 @@
             </el-header>
 
             <el-container>
-                <el-aside width="200px" style="background: #F3F3F3;border-width: 0px 1px 1px 1px;border-style: solid;border-color: #AAAAAA;">
-                    <assembly :height="assemblyHeight"></assembly>
-                </el-aside>
+                <mu-flex>
+                    <mu-slide-left-transition>
+                        <el-aside v-if="showLeftAside" width="200px" style="background: #F3F3F3;border-width: 0px 1px 1px 1px;border-style: solid;border-color: #AAAAAA;">
+                            <assembly :height="assemblyHeight" @hiddenAssembly="showLeftAside = false"></assembly>
+                        </el-aside>
+                    </mu-slide-left-transition>
+                </mu-flex>
 
                 <el-main>
-                    <layout></layout>
+                    <layout/>
                 </el-main>
+
+                <!--<mu-flex>
+                    <mu-slide-left-transition>
+                        <el-aside style="background: #F3F3F3;border-width: 0px 1px 1px 1px;border-style: solid;border-color: #AAAAAA;">
+                            <assembly :height="assemblyHeight"></assembly>
+                        </el-aside>
+                    </mu-slide-left-transition>
+                </mu-flex>-->
             </el-container>
         </el-container>
     </div>
@@ -27,6 +39,7 @@
         name: 'App',
         data() {
             return {
+                showLeftAside: true,
                 assemblyHeight: window.innerHeight - 62 + 'px'
             }
         },

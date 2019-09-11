@@ -12,7 +12,7 @@
                 </el-dropdown>
             </div>
 
-            <div style="width: 40%;display: flex;justify-content: flex-end;align-items: center">
+            <div style="width: 40%;display: flex;justify-content: flex-end;align-items: center" @click="hiddenAssembly">
                 <mu-button small icon>
                     <mu-icon size="18" value=":el-icon-d-arrow-left"></mu-icon>
                 </mu-button>
@@ -76,6 +76,9 @@
             },
             dropdownChange(command){
                 this.useAssembly = command;
+            },
+            hiddenAssembly(evt){
+                this.$emit('hiddenAssembly', evt);
             }
         }
     };
