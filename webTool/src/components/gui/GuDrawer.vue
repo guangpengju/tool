@@ -57,7 +57,7 @@
             },
             height: {
                 type: String,
-                default: "90%"
+                default: (window.innerHeight - 60) + 'px'
             },
             customeClass: String
         },

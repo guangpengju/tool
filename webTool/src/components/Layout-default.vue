@@ -1,23 +1,31 @@
 <template>
     <div class="full-screen">
-        <main-factory :element="layout"/>
+        <draggable class="full-screen draggable-main" :list="elements" v-model="elements" group="assembly">
+            <assembly-factory :assemblyClass="chooseIndex == index?'element-choose':''"
+                              v-for="(item,index) in elements"
+                              :key="item.id + '-' + index"
+                              :assemblyData="item"
+                              @choose="editInfo(index,item)"/>
+        </draggable>
         <gu-drawer drawerType="right" :drawerShow.sync="drawer">
             <style-edit :editData.sync="editData"></style-edit>
         </gu-drawer>
     </div>
 </template>
 <script>
+    import draggable from 'vuedraggable'
     import GuDrawer from "@/components/gui/GuDrawer";
     import StyleEdit from "@/components/StyleEdit";
-    import MainFactory from "@/components/factory/MainFactory";
+    import AssemblyFactory from "@/components/factory/AssemblyFactory";
 
     export default {
         name: 'Layout',
         componentName: 'Layout',
         components: {
-            MainFactory,
+            AssemblyFactory,
             GuDrawer,
-            StyleEdit
+            StyleEdit,
+            draggable
         },
         data() {
             return {
@@ -28,7 +36,7 @@
             }
         },
         computed: {
-            layout() {
+            elements() {
                 return this.$store.state.layout;
             }
         },
