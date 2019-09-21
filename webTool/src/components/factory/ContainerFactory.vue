@@ -1,23 +1,29 @@
 <template>
-    <div :style="this.$parent.createStyle(element)" >
-        <!--<draggable class="full-screen draggable-main" :list="element.elements" v-model="element.elements" group="assembly">
-           &lt;!&ndash; <assembly-factory v-for="(item,index) in ele.elements"
-                              :key="item.id + '-' + index" :element="item"
-                              :assemblyClass="chooseIndex == index?'element-choose':''"/>&ndash;&gt;
-        </draggable>-->
+    <div id="container" :style="this.$parent.createStyle(this.layoutDatas)">
+        <draggable class="full-screen" :list="layoutDatas.elements" v-model="layoutDatas.elements" group="assembly">
+            <main-factory v-for="(item,index) in layoutDatas.elements" :key="item.id + '-' + index" :layoutData="item"/>
+        </draggable>
     </div>
 </template>
 
 <script>
     import draggable from 'vuedraggable'
+    import MainFactory from "@/components/factory/MainFactory";
     export default {
         name: 'ContainerFactory',
         componentName: 'ContainerFactory',
         components: {
+            MainFactory,
             draggable
         },
         props: {
-            element: Object
+            layoutDatas: Object
+        },
+        methods:{
+            /*choose(){
+                this.$store.dispatch('setChooseDataValue', this.layoutDatas);
+                this.$emit('choosed');
+            }*/
         }
     };
 </script>

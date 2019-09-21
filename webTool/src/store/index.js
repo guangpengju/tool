@@ -7,37 +7,36 @@ export default new Vuex.Store({
     state: {
         layout: {
             type: 'container',
+            name: 'mainContainer',
+            attr: {
+                style: {
+                    custome: "height: 100%;width: 100%;background: white;"
+                }
+            },
             elements: []
+        },
+        chooseData:{
+            uuid: '0',
+            value: {}
         }
     },
     mutations: {
-        add(state, ele) {
-            ele.id = (ele.id + "-" + new Date());
-            state.layout.push(ele);
-        },
-        remove(state, id) {
-            if(state.layout.length < 1){
-                let removeIndex;
-                for (let i = 0; i < state.layout.length; i++) {
-                    if (state.layout[i].id == id) {
-                        removeIndex = i;
-                        break;
-                    }
-                }
-
-                state.layout.splice(removeIndex, 1);
-            }
-        },
-        show(state) {
-            console.log(state.layout)
+        setChooseData(state, data){
+            state.chooseData[data.key] = data.val;
         }
     },
     actions: {
-        addElement(context, ele) {
-            context.commit("add", ele);
+        setChooseDataUUID(context, val) {
+            context.commit("setChooseData", {
+                key: 'uuid',
+                val: val
+            });
         },
-        removeElement(context, id) {
-            context.commit("remove", id);
+        setChooseDataValue(context, val) {
+            context.commit("setChooseData", {
+                key: 'value',
+                val: val
+            });
         }
     }
 });

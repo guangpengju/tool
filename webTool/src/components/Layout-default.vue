@@ -66,7 +66,6 @@
         methods: {
             editInfo(index, data) {
                 this.chooseIndex = index;
-                console.log(data)
                 this.editData = data;
             }
         }

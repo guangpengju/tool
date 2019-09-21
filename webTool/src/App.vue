@@ -5,7 +5,7 @@
             <el-header class="main-el-header">
                 <tool-bar>
                     <template #main>
-                        <el-button size="small">新建</el-button>
+                        <el-button size="small" @click="showInfo">新建</el-button>
                         <el-button size="small">导入</el-button>
                         <el-button size="small" @click="showLeftAside = true">组件</el-button>
                         <el-button size="small" @click="drawerShow = false">编辑</el-button>
@@ -54,7 +54,11 @@
             ToolBar,
             Assembly
         },
-        methods: {}
+        methods: {
+            showInfo(){
+                console.log(this.$store.state.layout)
+            }
+        }
     }
 </script>
 
@@ -82,5 +86,10 @@
         border-width: 0px 1px 1px 1px;
         border-style: solid;
         border-color: #AAAAAA;
+    }
+
+    .full-screen {
+        height: 100%;
+        width: 100%;
     }
 </style>

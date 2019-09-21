@@ -1,6 +1,6 @@
 <template>
-    <div class="full-screen">
-        <main-factory :element="layout"/>
+    <div id="layout" class="full-screen">
+        <main-factory :layoutData="layout" @choosed="editInfo"/>
         <gu-drawer drawerType="right" :drawerShow.sync="drawer">
             <style-edit :editData.sync="editData"></style-edit>
         </gu-drawer>
@@ -22,13 +22,13 @@
         data() {
             return {
                 drawer: false,
-                chooseIndex: -1,
                 dialogFormVisible: false,
                 editData: {}
             }
         },
         computed: {
             layout() {
+                console.log(typeof this.$store.state.layout)
                 return this.$store.state.layout;
             }
         },
@@ -56,30 +56,19 @@
             }
         },
         methods: {
-            editInfo(index, data) {
-                this.chooseIndex = index;
-                console.log(data)
-                this.editData = data;
+            editInfo() {
+                // this.editData = this.$store.state.chooseData.value;
             }
         }
     };
 </script>
 
 <style>
-    .full-screen {
-        height: 100%;
-        width: 100%;
-    }
-
     .draggable-main {
         background: #e9e7ee;
         flex-wrap: wrap;
         display: flex;
         align-items: flex-start;
-    }
-
-    .element-choose {
-        border: 1px solid #fc4b15;
     }
 </style>
 
