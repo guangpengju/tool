@@ -23,7 +23,7 @@
     };
 </script>
 
-<style>
+<style scoped>
     .toolbar-logo{
         display: flex;
         justify-content: center;

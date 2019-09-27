@@ -2,6 +2,7 @@
     "base": [{
             "id": "layot-horizontal",
             "label": "横向布局",
+            "icon": "el-icon-full-screen",
             "type": "container",
             "tage": "div",
             "className": "",

@@ -5,6 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+        common:{
+
+        },
         layout: {
             type: 'container',
             name: 'mainContainer',
@@ -21,11 +24,17 @@ export default new Vuex.Store({
         }
     },
     mutations: {
+        setCommon(state, data){
+            state.common[data.key] = data.val;
+        },
         setChooseData(state, data){
             state.chooseData[data.key] = data.val;
         }
     },
     actions: {
+        setCommonVal(context, data){
+            context.commit("setCommon", data);
+        },
         setChooseDataUUID(context, val) {
             context.commit("setChooseData", {
                 key: 'uuid',

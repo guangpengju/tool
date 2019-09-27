@@ -16,7 +16,7 @@
             return {
                 id:"",
                 classInfo:{
-                    'full-screen': true,
+                    'full-screen': this.fullScreen,
                     'element-choose': false
                 },
                 styleMap:{
@@ -41,6 +41,10 @@
             }
         },
         props:{
+            fullScreen: {
+                type: Boolean,
+                default: false
+            },
             layoutData: Object
         },
         watch:{

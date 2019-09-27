@@ -14,6 +14,14 @@ import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 Vue.use(MuseUI);
 
+import commonVariable from '@/common/common_variable';
+Vue.prototype.common = commonVariable;
+
+
+import commonFunc from '@/common/common_func';
+Vue.use(commonFunc)
+
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
