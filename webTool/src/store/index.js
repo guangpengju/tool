@@ -8,16 +8,7 @@ export default new Vuex.Store({
         common:{
 
         },
-        layout: {
-            type: 'container',
-            name: 'mainContainer',
-            attr: {
-                style: {
-                    custome: "height: 100%;width: 100%;background: white;"
-                }
-            },
-            elements: []
-        },
+        layout: [],
         chooseData:{
             uuid: '0',
             value: {}

@@ -82,6 +82,7 @@
             },
             dropdownChange(command) {
                 this.useWidgets = command;
+                console.log(this.datas)
             },
             hidden(){
                 this.$emit('hidden');

@@ -1,32 +1,23 @@
 <template>
     <div id="layout" class="full-screen">
-        <!--<main-factory :layoutData="layout" @choosed="editInfo" :fullScreen="true"/>-->
-        <!--<gu-drawer drawerType="right" :drawerShow.sync="drawer">
-            1234567890-9
-        </gu-drawer>-->
-       <!-- <edit-drawer>
-            <template v-slot:title>
-                1234
-            </template>
-            <template v-slot:body>
-                qwerwrwr
-                &lt;!&ndash;<style-edit :editData.sync="editData"></style-edit>&ndash;&gt;
-            </template>
-        </edit-drawer>-->
+        <draggable class="full-screen main-container" :list="editData" v-model="editData" group="assembly">
+            <main-template v-for="(item,index) in editData" :key="item.id + '-' + index" :layoutData="item"/>
+        </draggable>
     </div>
 </template>
 <script>
-    import EditDrawer from "@/components/editConfig/EditDrawer";
-
+    import draggable from 'vuedraggable'
+    import MainTemplate from "@/components/template/MainTemplate";
     export default {
         name: 'MainLayout',
         componentName: 'MainLayout',
         components: {
-            EditDrawer,
+            draggable,
+            MainTemplate
         },
         data() {
             return {
-                editData: {}
+                editData: this.$store.state.layout
             }
         },
         methods: {
@@ -38,11 +29,11 @@
 </script>
 
 <style scoped>
-    .draggable-main {
-        background: #e9e7ee;
-        flex-wrap: wrap;
+
+    .main-container{
+        background: rgba(92, 234, 24, 0.1);
         display: flex;
-        align-items: flex-start;
+        flex-wrap: wrap;
     }
 </style>
 

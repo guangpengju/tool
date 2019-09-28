@@ -1,7 +1,7 @@
 <template>
     <div class="widgets-item-main">
         <draggable :list="datas" :options="{fallbackOnBody: true}"
-                   :group="{ name: 'assembly', pull: 'clone', put: false }">
+                   :group="{ name: 'assembly', pull: 'clone', put: false }" :sort="false" :clone="dataClone">
             <li class="widgets-item-cell" v-for="(item, index) in datas" :key="index">
                 <a>
                     <i :class="['icon', item.icon?item.icon:'el-icon-info']"></i>
@@ -24,7 +24,11 @@
         props: {
             datas: Array
         },
-        methods: {}
+        methods: {
+            dataClone(original) {
+                return this.common.deepCopy(original);
+            }
+        }
     };
 </script>
 

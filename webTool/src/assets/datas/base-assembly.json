@@ -25,7 +25,30 @@
             "showHtml": "",
             "elements": []
         },{
-            "label": "横向布局2"
+            "id": "layot-asdqwe",
+            "label": "横向布局2",
+            "icon": "el-icon-full-screen",
+            "type": "container",
+            "tage": "div",
+            "className": "",
+            "attr": {
+                "style": {
+                    "width": 100,
+                    "height": 100,
+                    "flex": "row",
+                    "justify": "flex-start",
+                    "align": "stretch",
+                    "custome": "background: red;"
+                },
+                "props": {
+
+                },
+                "event": {
+
+                }
+            },
+            "showHtml": "",
+            "elements": []
         },{
             "label": "横向布局3"
         },{
