@@ -53,15 +53,16 @@ alal
         width: 380px;
         background: #ffffff;
         overflow: hidden;
-        z-index: 9999;
+        z-index: 999;
         position: fixed;
         border: 2px solid #F7F7F7;
+        border-right: 1px solid #AAAAAA;
+        padding: 0px 3px;
     }
 
     .gu-drawer-right {
         margin-top: 0px;
-        right: 0px;
-        padding-right: 3px;
+        right: 24px;
     }
 
     .tab-label{

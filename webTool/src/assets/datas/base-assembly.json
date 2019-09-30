@@ -13,7 +13,7 @@
                     "flex": "row",
                     "justify": "flex-start",
                     "align": "stretch",
-                    "custome": "background: antiquewhite;"
+                    "custome": "background: white;"
                 },
                 "props": {
 

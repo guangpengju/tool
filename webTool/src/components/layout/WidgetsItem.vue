@@ -26,7 +26,7 @@
         },
         methods: {
             dataClone(original) {
-                return this.common.deepCopy(original);
+                return this.common.createElement(original);
             }
         }
     };

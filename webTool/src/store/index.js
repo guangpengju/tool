@@ -12,7 +12,8 @@ export default new Vuex.Store({
         chooseData:{
             uuid: '0',
             value: {}
-        }
+        },
+        showView: false
     },
     mutations: {
         setCommon(state, data){

@@ -17,6 +17,7 @@
                             inactive-text="编辑">
                     </el-switch>
                     <el-button size="small">源码</el-button>
+                    <el-button type="text" icon="el-icon-view" @click="showView">预览</el-button>
                 </template>
             </tool-bar>
         </el-header>
@@ -34,18 +35,15 @@
             <!-- 主布局区 -->
             <el-main>
                 <main-layout  />
+                <view-layout />
             </el-main>
 
+            <el-aside width="25px" >
+                <side-tool-bar :btnList="sideBtnList" @click="sideToolBarClick"/>
+            </el-aside>
+
             <!-- 右侧弹框 -->
-            <edit-drawer :drawerShow.sync="drawerShow">
-                <template v-slot:title>
-                    1234
-                </template>
-                <template v-slot:body>
-                    qwerwrwr
-                    <!--<style-edit :editData.sync="editData"></style-edit>-->
-                </template>
-            </edit-drawer>
+            <edit-drawer :drawerShow.sync="drawerShow" />
         </el-container>
     </el-container>
 </template>
@@ -55,16 +53,33 @@
     import MainLayout from '@/components/layout/MainLayout'
     import WidgetsLayout from '@/components/layout/WidgetsLayout'
     import EditDrawer from "@/components/editConfig/EditDrawer";
+    import SideToolBar from "@/components/layout/SideToolBar";
+    import ViewLayout from "@/components/layout/ViewLayout";
 
     export default {
         data() {
             return {
                 drawerShow: false,
                 showLeftAside: true,
-                assemblyHeight: window.innerHeight - 62 + 'px'
+                assemblyHeight: window.innerHeight - 62 + 'px',
+                sideBtnList:[{
+                    id:'style',
+                    name:'样式编辑',
+                    icon:'el-icon-edit'
+                },{
+                    id:'props',
+                    name:'属性编辑',
+                    icon:'el-icon-edit'
+                },{
+                    id:'event',
+                    name:'事件编辑',
+                    icon:'el-icon-edit'
+                }]
             }
         },
         components: {
+            ViewLayout,
+            SideToolBar,
             ToolBar,
             MainLayout,
             WidgetsLayout,
@@ -73,6 +88,14 @@
         methods: {
             showInfo(){
                 console.log(this.$store.state.layout)
+            },
+            sideToolBarClick(id, choose){
+                if(id == 'style'){
+                    this.drawerShow = choose;
+                }
+            },
+            showView(){
+                this.$store.state.showView = true;
             }
         }
     }

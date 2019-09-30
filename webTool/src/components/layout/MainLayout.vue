@@ -1,13 +1,14 @@
 <template>
     <div id="layout" class="full-screen">
         <draggable class="full-screen main-container" :list="editData" v-model="editData" group="assembly">
-            <main-template v-for="(item,index) in editData" :key="item.id + '-' + index" :layoutData="item"/>
+            <main-template v-for="(item,index) in editData" :key="item.id" :layout-data="item" :parent-list="editData"/>
         </draggable>
     </div>
 </template>
 <script>
     import draggable from 'vuedraggable'
     import MainTemplate from "@/components/template/MainTemplate";
+
     export default {
         name: 'MainLayout',
         componentName: 'MainLayout',
@@ -30,10 +31,12 @@
 
 <style scoped>
 
-    .main-container{
+    .main-container {
         background: rgba(92, 234, 24, 0.1);
         display: flex;
         flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 </style>
 

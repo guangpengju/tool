@@ -1,20 +1,20 @@
 <template>
-    <div style="width: 100px;" @click.stop="choosed">
-        <div :class="{'main-template':true,'main-template-choose':isChoosed}">
-            <!-- 主组件 -->
+    <div :class="{'main-template':true,'main-template-choose':isChoosed}" @click.stop="choosed">
+        <!-- 主组件 -->
+        <div style="border: 1px dotted hsla(0,0%,66.7%,.5);border-radius: 5px">
             <component :is="layoutData.type == 'container'?'container-template':'assembly-template'"
                        :layoutDatas="layoutData"/>
-            <!-- 移动图标 -->
-            <div v-show="isChoosed" class="main-template-float" style="top: 0px;left: 0px">
-                <i class="main-template-icon el-icon-rank"/>
-            </div>
+        </div>
+        <!-- 移动图标 -->
+        <div v-show="isChoosed" class="main-template-float" style="top: 0px;left: 0px">
+            <i class="main-template-icon el-icon-rank"/>
+        </div>
 
-            <!-- 编辑图标 -->
-            <div v-show="isChoosed" class="main-template-float" style="bottom: 0px;right: 0px">
-                <i class="main-template-icon el-icon-edit"/>
-                <i class="main-template-icon el-icon-document-copy"/>
-                <i class="main-template-icon el-icon-delete"/>
-            </div>
+        <!-- 编辑图标 -->
+        <div v-show="isChoosed" class="main-template-float" style="bottom: 0px;right: 0px">
+            <i class="main-template-icon el-icon-edit"/>
+            <i class="main-template-icon el-icon-document-copy" @click="copyElement"/>
+            <i class="main-template-icon el-icon-delete" @click="deleteElement"/>
         </div>
     </div>
 </template>
@@ -29,23 +29,35 @@
         },
         data() {
             return {
-                id: this.common.uuid(),
                 isChoosed: false
             }
         },
         props: {
-            layoutData: Object
+            layoutData: Object,
+            parentList: Array
         },
         watch: {
             '$store.state.chooseData.uuid': function (newVal) {
-                this.isChoosed = newVal == this.id;
+                this.isChoosed = newVal == this.layoutData.uuid;
             }
         },
         methods: {
             choosed() {
-                this.$store.dispatch('setChooseDataUUID', this.id);
+                this.$store.dispatch('setChooseDataUUID', this.layoutData.uuid);
                 this.$store.dispatch('setChooseDataValue', this.layoutData);
                 this.$emit('choosed');
+            },
+            deleteElement(){
+                for (let i = 0; i < this.parentList.length; i++) {
+                    if(this.parentList[i].id == this.layoutData.id){
+                        this.parentList.splice(i,1);
+                        break;
+                    }
+                }
+            },
+            copyElement(){
+                let obj = this.common.createElement(this.layoutData)
+                this.parentList.push(obj);
             }
         }
     };
@@ -53,10 +65,10 @@
 
 <style scoped>
     .main-template{
-        border: 2px dashed hsla(0,0%,66.7%,.5);
-        padding-left: 20px;
-        padding-bottom: 20px;
-        position: absolute;
+        border: 2px dashed hsla(0,0%,66%,.5);
+        background: rgba(236,245,255,.3);
+        padding: 3px 3px 20px 20px;
+        position: relative;
     }
 
     .main-template-choose{
@@ -80,6 +92,11 @@
         display: inline-block;
         vertical-align: middle;
     }
+
+    .main-template-icon:active {
+        color: #bbbbbb;
+    }
+
 </style>
 
 

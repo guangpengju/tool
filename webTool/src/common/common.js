@@ -51,6 +51,33 @@ export default {
         }
         return o;
     },
+    replace(str, tageVal, newVal){
+        return str.replace(new RegExp(tageVal,'g'), newVal);
+    },
+    isEmpty(obj,defaultVal){
+        if(obj){
+            if(typeof obj === 'object'){
+                if (obj instanceof Array && obj.length > 0) {
+                    return obj
+                } else if(obj.length > 0) {
+                    // TODO object类型判空待完善
+                    return obj
+                }
+            }else{
+                return obj;
+            }
+        }
+        return defaultVal;
+    },
+    createElement(original){
+        let obj = this.deepCopy(original);
+        let uuid = this.uuid()
+
+        obj.id += ("=" + uuid);
+        obj.uuid = uuid;
+
+        return obj
+    },
     createStyle (obj) {
         if (!obj || !obj.attr || !obj.attr.style) return "";
 
