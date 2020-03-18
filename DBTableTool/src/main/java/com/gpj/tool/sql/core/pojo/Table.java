@@ -3,10 +3,7 @@ package com.gpj.tool.sql.core.pojo;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @className Table
@@ -27,7 +24,7 @@ public class Table {
 
     private List<Data> datas = new ArrayList<>();
 
-
+    private int primaryNum = 0;
 
     public Table(String name) {
         this.name = name;
@@ -37,11 +34,23 @@ public class Table {
         this.attr.put(attrName, attrValue);
     }
 
-    public Column addColumns(Column columns) {
-        if(!this.columns.contains(columns)){
-            this.columns.add(columns);
+    public Column addColumn(Column column) {
+        if(!columns.contains(column)){
+            columns.add(column);
+            if(column.isPrimary()){
+                this.primaryNum++;
+            }
         }
-        return columns;
+        return column;
+    }
+
+    public void removeColumn(Column column) {
+        if(columns.contains(column)){
+            columns.remove(column);
+            if(column.isPrimary()){
+                this.primaryNum--;
+            }
+        }
     }
 
     public Column getColumn(String columnName){
@@ -50,11 +59,36 @@ public class Table {
                 .findFirst().orElse(null);
     }
 
-    public void addIndexs(Index indexs) {
+    public Index addIndex(Index indexs) {
         this.indexs.put(indexs.getIndexName(), indexs);
+        return indexs;
+    }
+
+    public Index getIndex(String indexName){
+        final Map.Entry<String, Index> indexEntry = this.indexs.entrySet().stream()
+                .filter(entry -> StringUtils.equals(entry.getKey(), indexName))
+                .findFirst().orElse(null);
+
+        if(indexEntry != null){
+            return indexEntry.getValue();
+        }
+        return null;
     }
 
     public void addDatas(Data datas) {
         this.datas.add(datas);
+    }
+
+    public Data addData(Data data) {
+        if(!datas.contains(data)){
+            datas.add(data);
+        }
+        return data;
+    }
+
+    public void removeData(Data data) {
+        if(datas.contains(data)){
+            datas.remove(data);
+        }
     }
 }

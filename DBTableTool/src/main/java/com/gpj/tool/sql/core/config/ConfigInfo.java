@@ -1,8 +1,5 @@
 package com.gpj.tool.sql.core.config;
 
-import com.founder.tool.sql.common.config.ConfigEnum;
-import com.founder.tool.sql.common.enums.DBMoldEnum;
-import com.founder.tool.sql.common.exception.ConfigRequiredException;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -23,8 +20,8 @@ import java.util.ResourceBundle;
  * @date 2019/7/10 14:58
  * @version 1.0
  **/
-@Getter
 @Slf4j
+@Getter
 @Configuration
 @PropertySource("classpath:config.properties")
 public class ConfigInfo {
@@ -32,50 +29,7 @@ public class ConfigInfo {
 
     private String excelName;
 
-
-    /*private static final String JAR_SUFFIX = "jar";
-    private static final String PROPERTIES_SUFFIX = ".properties";
-    private static final String CONFIG_FILE_NAME = "tool";
-    private static final String CONFIG_FILE_NAME_DEBUG = "tool-debug";
-
-    public static String projectPath;
-
-    private static ResourceBundle resource;
-
-    public static String getStringConfig(String name) {
-        return getStringConfig(name, true);
-    }
-
-    public static String getStringConfig(String name, boolean require) {
-        String config = resource.getString(name);
-        if(StringUtils.isNoneBlank(config)){
-            return config.replace("[JarPath]",projectPath);
-        }
-        if(require) throw new ConfigRequiredException(name);
-        return null;
-    }
-
-    public static DBMoldEnum getDBMoldEnum(){
-        return DBMoldEnum.getEnum(getStringConfig(ConfigEnum.DB_TYPE.getKey()));
-    }
-    
-    public static void init(){
-        String path = ConfigInfo.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        String suffix = path.substring(path.lastIndexOf(".") + 1);
-        projectPath = path.substring(0, path.lastIndexOf("/") + 1);
-        if(StringUtils.equals(JAR_SUFFIX, suffix)){
-            try (
-                    InputStream in = new BufferedInputStream(new FileInputStream(new File(projectPath, CONFIG_FILE_NAME + PROPERTIES_SUFFIX)))
-            ){
-                resource = new PropertyResourceBundle(in);
-            }catch (Exception e){
-                log.warn("配置文件未找到,将使用默认配置文件!{}", projectPath + "/" + CONFIG_FILE_NAME + PROPERTIES_SUFFIX);
-                resource = ResourceBundle.getBundle(CONFIG_FILE_NAME);
-            }
-        }else{
-            resource = ResourceBundle.getBundle(CONFIG_FILE_NAME_DEBUG);
-        }
-
+    /*
         log.info("*********** 配置信息 ***********");
         log.info("数据库类型:    {}", getDBMoldEnum().getName());
         log.info("excel路径:    {}", getStringConfig(ConfigEnum.EXCEL_PATH.getKey()));

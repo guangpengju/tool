@@ -1,7 +1,7 @@
 package com.gpj.tool.sql.core.io;
 
 import com.gpj.tool.sql.core.config.ConfigInfo;
-import com.gpj.tool.sql.core.excel.parsers.CoreExcelParser;
+import com.gpj.tool.sql.core.excel.parsers.DefaultCoreExcelParser;
 import com.gpj.tool.sql.core.exceptions.ExcelFileReaderException;
 import com.gpj.tool.sql.core.pojo.RowInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class DefaultExcelReader {
     private ConfigInfo config;
 
     @Autowired
-    private CoreExcelParser excelParser;
+    private DefaultCoreExcelParser excelParser;
 
     public void read(){
         InputStream in = null;

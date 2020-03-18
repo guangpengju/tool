@@ -2,9 +2,11 @@ package com.gpj.tool.sql.core.excel.parsers;
 
 import com.gpj.tool.sql.core.pojo.Column;
 import com.gpj.tool.sql.core.pojo.RowInfo;
-import com.gpj.tool.sql.core.pojo.Table;
 
-public interface ColumnExcelParser extends ExcelParser{
+public interface ColumnExcelParser {
+    default public boolean skip(RowInfo rowInfo, Column column){
+        return false;
+    }
 
-    public void analysis(RowInfo rowInfo, Column column);
+    public boolean analysis(RowInfo rowInfo, Column column);
 }

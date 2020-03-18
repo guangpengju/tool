@@ -17,6 +17,9 @@ import java.util.Map;
 @Setter
 @Getter
 public class Column {
+    // 表名
+    private String tableName;
+
     // 字段名称
     private String code;
 
@@ -30,7 +33,7 @@ public class Column {
     private boolean primary;
 
     // 类型
-    private ColumnType type;
+    private String type;
 
     // 长度
     private int length;
@@ -47,7 +50,8 @@ public class Column {
     // 扩展属性
     private Map<String,Object> attr = new LinkedHashMap<>();
 
-    public Column(String code) {
+    public Column(String tableName, String code) {
+        this.tableName = tableName;
         this.code = code;
     }
 }

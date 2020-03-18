@@ -1,6 +1,5 @@
 package com.gpj.tool.sql.core.exceptions;
 
-import com.founder.tool.sql.common.exception.SQLToolException;
 import lombok.Getter;
 
 /**

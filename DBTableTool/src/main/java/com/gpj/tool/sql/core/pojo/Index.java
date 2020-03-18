@@ -18,5 +18,18 @@ public class Index {
 
     private String indexName;
 
-    private List<Column> columns = new ArrayList<>();
+    private List<String> columnNames = new ArrayList<>();
+
+    public Index(String tableName, String indexName) {
+        this.tableName = tableName;
+        this.indexName = indexName;
+    }
+    
+    public void addIndexColumnNam(String columnName){
+        columnNames.add(columnName);
+    }
+
+    public void removeIndexColumnNam(String columnName){
+        columnNames.remove(columnName);
+    }
 }
