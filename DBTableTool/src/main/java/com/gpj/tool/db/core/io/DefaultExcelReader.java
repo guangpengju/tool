@@ -42,7 +42,8 @@ public class DefaultExcelReader {
         InputStream in = null;
         XSSFWorkbook workbook = null;
         try {
-            File file = resourceLoader.getResource(config.getExcelPath()).getFile();
+//            File file = resourceLoader.getResource(config.getExcelPath()).getFile();
+            File file = new File(config.getExcelFile());
             in = new BufferedInputStream(new FileInputStream(file));
             ZipSecureFile.setMinInflateRatio(-1.0d);
             workbook = new XSSFWorkbook(in);

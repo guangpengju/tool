@@ -26,9 +26,13 @@ public class MysqlColumnExcelParser implements ColumnExcelParser {
             column.setAccuracy(showLength(column.getTypeEM())?column.getAccuracy():-1);
             // 处理长度和精度sql
             if(showLength(column.getTypeEM())){
-                int length = column.getLength() < 0?0:column.getLength();
-                int accuracy = column.getAccuracy() < 0?0:column.getAccuracy();
-                column.setSize("(" + length + "," + accuracy + ")");
+                StringBuilder builder = new StringBuilder();
+                builder.append("(").append(column.getLength());
+                if(column.getAccuracy() >= 0){
+                    builder.append(",").append(column.getLength());
+                }
+                builder.append(")");
+                column.setSize(builder.toString());
             }
 
             // 处理默认值

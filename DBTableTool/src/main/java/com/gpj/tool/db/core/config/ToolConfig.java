@@ -26,10 +26,10 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan("com.gpj.tool.db.core")
 @PropertySource("classpath:tool.properties")
 public class ToolConfig {
-    @Value("${excel.file:classpath:db.xlsx}")
-    private String excelPath;
+    @Value("${excel.file:E:\\sql\\db.xlsx}")
+    private String excelFile;
 
-    @Value("${sql.path:F:\\sql}")
+    @Value("${sql.path:E:\\sql}")
     private String sqlDirPath;
 
     @Bean
@@ -38,8 +38,7 @@ public class ToolConfig {
             @Override
             public void start() {
                 reader.read();
-                System.out.println(JSONObject.toJSONString(store));
-                writer.write();
+                writer.generateSqlFile();
             }
 
             @Override

@@ -80,11 +80,26 @@ public abstract class DefaultAbstractTemplate extends TemplateHandler implements
         return "";
     }
 
-    private String isEmpty(String value, String sql){
+    private String isFalse(Boolean param, String sql){
+        if(!param){
+            String result = analysisExpression(sql);
+            return analysisPlaceholder(result);
+        }
+        return "";
+    }
+
+    private String userDefault(String value, String sql){
         sql = StringUtils.isBlank(value)?sql:value;
         String result = analysisExpression(sql);
         return analysisPlaceholder(result);
     }
+
+    private String isEmpty(String value, String sql){
+        sql = !StringUtils.isBlank(value)?sql:"";
+        String result = analysisExpression(sql);
+        return analysisPlaceholder(result);
+    }
+
 
     private String isUnionPrimary(String sql){
         if(cursor.getTable().getPrimaryNum() > 1){
