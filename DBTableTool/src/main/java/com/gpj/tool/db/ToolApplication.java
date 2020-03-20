@@ -20,6 +20,8 @@ public class ToolApplication {
      *   通过DefaultExcelHandler调用各类ExcelParser,实现excel解析
      *   通过TemplateHandler解析Template自定义实现类转义定义的模板,实现sql语句生成
      *   通过DefaultSQLWriter将sql写出
+     * TODO
+     *    去掉配置文件,读取外部配置文件
      */
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
